@@ -1,10 +1,12 @@
+
 function Title ()
 {
-	return ( 
+	return (
 		<header>
-			<h1>To Do App</h1>
+			<h1>ToDo App en React</h1>
 		</header>
-	)
+	);
+
 }
 
 export default Title;

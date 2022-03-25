@@ -1,38 +1,42 @@
 import React from 'react';
-import './App.css';
+//import './App.css';
 import Title from './Title';
-import Form from './Form';
-import List from './List';
+import TaskForm from './TaskForm';
+import TaskList from './TaskList';
 
-class App extends React.Component {
-  
+class App extends React.Component{
 	constructor(props){
-		super(props);
+	super(props);
 		this.state = {
-		taskList: []
-		};
-	}	
-
-	HandleOnSubmit = task => {
-		this.state.taskList.push(task);
-		this.setState({taskList : this.state.taskList});
+		tasks: []
+	    };
 	}
 
-	HandleOnDelete = i => {
-		
+	addTask = task => {
+		console.log(task);
+		this.state.tasks.push(task);
+		this.setState({
+			tasks: this.state.tasks
+		});
 	}
 
-  render(){
-  	return (
-    	<div className="App">
-			<Title />
-			<Form HandleOnSubmit = {this.HandleOnSubmit}/>
-			
-			<List taskList = {this.state.taskList}/>
-    	</div>
-  	);
-  }
+	removeTask = id_task => {
+		this.state.tasks.splice(id_task, 1);
+		this.setState({
+		tasks: this.state.tasks
+		});
+	}
 
+
+	render(){
+		return (
+			<div className="App">
+				<Title />
+				<TaskForm addTask={this.addTask} />
+				<TaskList tasks={this.state.tasks} removeTask={this.removeTask}/>
+			</div>
+			);
+	 }
 }
 
 export default App;
